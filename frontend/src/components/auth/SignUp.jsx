@@ -86,13 +86,13 @@ const SignUp = () => {
           {/* Full Name */}
           <div className="mb-4">
             <Label className="text-gray-600">Full Name</Label>
-            <Input type="text" placeholder="Patanjali" className="mt-1 w-full" value={input.fullName} name="fullName" onChange={changeEventHandler}/>
+            <Input type="text" placeholder="Full Name" className="mt-1 w-full" value={input.fullName} name="fullName" onChange={changeEventHandler}/>
           </div>
 
           {/* Email */}
           <div className="mb-4">
             <Label className="text-gray-600">Email</Label>
-            <Input type="email" placeholder="patanjali@gmail.com" className="mt-1 w-full" value={input.email} name="email" onChange={changeEventHandler} />
+            <Input type="email" placeholder="Email" className="mt-1 w-full" value={input.email} name="email" onChange={changeEventHandler} />
           </div>
 
           {/* Password */}
