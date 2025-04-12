@@ -77,7 +77,7 @@ const Profile = () => {
               <div className="mt-1">
                 <Button 
                   onClick={handleResumeView}
-                  variant="ghost" 
+                  variant="link" 
                   className="text-blue-400 cursor-pointer p-0 h-auto"
                 >
                   <div className="flex items-center gap-2">
