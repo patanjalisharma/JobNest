@@ -17,11 +17,9 @@ const Profile = () => {
 
   const handleResumeView = () => {
     if (user?.profile?.resume) {
-      // Add .pdf extension to the URL if it's not already there
-      const resumeUrl = user.profile.resume.endsWith('.pdf') 
-        ? user.profile.resume 
-        : `${user.profile.resume}.pdf`;
-      window.open(resumeUrl, '_blank');
+      // Convert the URL to use the PDF delivery format
+      const pdfUrl = user.profile.resume.replace('/upload/', '/upload/fl_attachment/');
+      window.open(pdfUrl, '_blank');
     }
   };
 
