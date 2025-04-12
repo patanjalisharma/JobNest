@@ -17,9 +17,8 @@ const Profile = () => {
 
   const handleResumeView = () => {
     if (user?.profile?.resume) {
-      // Convert the URL to use the PDF delivery format
-      const pdfUrl = user.profile.resume.replace('/upload/', '/upload/fl_attachment/');
-      window.open(pdfUrl, '_blank');
+      // Use the direct URL without any transformation
+      window.open(user.profile.resume, '_blank', 'noopener,noreferrer');
     }
   };
 
