@@ -140,23 +140,23 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { fullName, email, phoneNumber, bio, skills } = req.body;
-    const file  = req.file;
+    const file = req.file;
 
-    let cloudResponse
+    let cloudResponse;
     if (file) {
       const fileUri = getDataUri(file);
       cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
         resource_type: "auto",
+        format: "pdf",
+        secure: true
       });
     }
- 
-  
 
     let skillsArray;
     if (skills) {
       skillsArray = skills.split(",");
     }
-    const userId = req.id; //from auth middleware
+    const userId = req.id;
 
     let user = await User.findById(userId);
 
@@ -169,16 +169,13 @@ export const updateProfile = async (req, res) => {
 
     if (fullName) user.fullName = fullName;
     if (email) user.email = email;
-
     if (phoneNumber) user.phoneNumber = phoneNumber;
     if (bio) user.profile.bio = bio;
     if (skills) user.profile.skills = skillsArray;
 
-    //resume comes later here
-
-    if(cloudResponse) {
+    if (cloudResponse) {
       user.profile.resume = cloudResponse.secure_url;
-      user.profile.resumeOriginalName = file.originalname //save the original name
+      user.profile.resumeOriginalName = file.originalname;
     }
 
     await user.save();
@@ -191,6 +188,7 @@ export const updateProfile = async (req, res) => {
       role: user.role,
       profile: user.profile,
     };
+
     return res.status(200).json({
       message: "Profile updated successfully",
       success: true,
@@ -198,5 +196,9 @@ export const updateProfile = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      message: "Error updating profile",
+      success: false,
+    });
   }
 };

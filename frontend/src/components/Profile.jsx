@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar from "./shared/NavBar";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import { Contact, Mail, Pen } from "lucide-react";
+import { Contact, Mail, Pen, FileText } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Label } from "./ui/label";
 import AppliedJobTable from "./AppliedJobTable";
@@ -14,6 +14,16 @@ const Profile = () => {
   useGetAppliedJob();
   const [open, setOpen] = useState(false);
   const { user } = useSelector((store) => store.auth);
+
+  const handleResumeView = () => {
+    if (user?.profile?.resume) {
+      // Add .pdf extension to the URL if it's not already there
+      const resumeUrl = user.profile.resume.endsWith('.pdf') 
+        ? user.profile.resume 
+        : `${user.profile.resume}.pdf`;
+      window.open(resumeUrl, '_blank');
+    }
+  };
 
   return (
     <div className="min-h-screen text-white">
@@ -68,9 +78,16 @@ const Profile = () => {
             <Label className="text-md font-bold">Resume</Label>
             {user?.profile?.resume ? (
               <div className="mt-1">
-                <a href={user.profile.resume} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-                  {user.profile.resumeOriginalName}
-                </a>
+                <Button 
+                  onClick={handleResumeView}
+                  variant="ghost" 
+                  className="text-blue-400 hover:text-blue-300 p-0 h-auto"
+                >
+                  <div className="flex items-center gap-2">
+                    <FileText className="h-4 w-4" />
+                    <span>{user.profile.resumeOriginalName}</span>
+                  </div>
+                </Button>
               </div>
             ) : (
               <p className="text-gray-400 mt-1">N/A</p>
