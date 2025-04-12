@@ -145,11 +145,7 @@ export const updateProfile = async (req, res) => {
     let cloudResponse;
     if (file) {
       const fileUri = getDataUri(file);
-      cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
-        resource_type: "auto",
-        format: "pdf",
-        secure: true
-      });
+      cloudResponse = await cloudinary.uploader.upload(fileUri.content);
     }
 
     let skillsArray;
