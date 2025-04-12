@@ -78,7 +78,7 @@ const Profile = () => {
                 <Button 
                   onClick={handleResumeView}
                   variant="ghost" 
-                  className="text-blue-400 hover:text-blue-300 p-0 h-auto"
+                  className="text-blue-400 cursor-pointer p-0 h-auto"
                 >
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4" />
