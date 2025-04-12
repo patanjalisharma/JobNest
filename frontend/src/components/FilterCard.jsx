@@ -33,10 +33,10 @@ const FilterCard = () => {
       {filterData.map((data, index) => (
         <div key={index} className="mb-6">
           <h2 className="font-semibold text-md mb-3">{data.filterType}</h2>
-          <RadioGroup onValueChange={(value) => handleFilterChange(data.key, value)}>
-            {data.array.map((item, subIndex) => (
+          <RadioGroup>
+            {filterData.array.map((item, subIndex) => (
               <div key={subIndex} className="flex items-center gap-2 mb-2">
-                <RadioGroupItem value={item} id={item + index} />
+                <RadioGroupItem/>
                 <Label htmlFor={item + index} className="text-gray-300">
                   {item}
                 </Label>
