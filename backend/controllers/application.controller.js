@@ -12,7 +12,7 @@ export const applyJob = async (req, res) => {
       });
     }
 
-    //checkif user has already applied or not
+    
     const existingApplication = await Application.findOne({
       job: jobId,
       applicant: userId,
@@ -25,7 +25,7 @@ export const applyJob = async (req, res) => {
       });
     }
 
-    //check if the job exist or not
+    
 
     const job = await Job.findById( jobId );
     if (!job) {
@@ -35,7 +35,7 @@ export const applyJob = async (req, res) => {
       });
     }
 
-    //create a new application
+    
     const newApplication = await Application.create({
       job: jobId,
       applicant: userId,
@@ -118,7 +118,6 @@ export const updateStatus = async(req, res) => {
               });
         }
 
-        //find the application by application id
 
         const application = await Application.findOne({_id: applicationId})
         if (!application) {
@@ -128,7 +127,7 @@ export const updateStatus = async(req, res) => {
               });
         }
 
-        //update the status
+    
         application.status = status.toLowerCase()
         await application.save()
 

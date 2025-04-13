@@ -36,7 +36,7 @@ export const registerCompany = async (req, res) => {
 export const getCompany = async (req, res) => {
   try {
     const userId = req.id;
-    const companies = await Company.find({ userId }); //finding by userId so that user only sees those company that are created by user
+    const companies = await Company.find({ userId }); 
     if (!companies) {
       return res.status(404).json({
         message: "No companies found",
@@ -77,7 +77,6 @@ export const updateCompany = async (req, res) => {
     const { name, description, website, location } = req.body;
     const file = req.file;
 
-    //cloudinary
 
     let cloudResponse;
     let logo;
