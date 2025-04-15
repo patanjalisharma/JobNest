@@ -76,7 +76,7 @@ const Login = () => {
             <Label className="text-gray-600">Email</Label>
             <Input
               type="email"
-              placeholder="patanjali@gmail.com"
+              placeholder="email"
               className="mt-1 w-full"
               value={input.email}
               name="email"
