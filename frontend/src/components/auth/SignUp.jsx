@@ -104,7 +104,7 @@ const SignUp = () => {
           {/* Phone Number */}
           <div className="mb-4">
             <Label className="text-gray-600">Phone Number</Label>
-            <Input type="tel" placeholder="+91 ##########" className="mt-1 w-full" value={input.phoneNumber} name="phoneNumber" onChange={changeEventHandler}/>
+            <Input type="tel" placeholder="##########" className="mt-1 w-full" value={input.phoneNumber} name="phoneNumber" onChange={changeEventHandler}/>
           </div>
 
           {/* Role Selection */}
