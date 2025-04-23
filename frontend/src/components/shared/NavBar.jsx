@@ -44,7 +44,7 @@ const NavBar = () => {
         <div>
         <Popover className="md:hidden">
               <PopoverTrigger asChild>
-                <button className="text-white">
+                <button className="text-white md:hidden">
                 <Menu/>
                 </button>
                 
