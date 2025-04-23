@@ -115,7 +115,7 @@ const NavBar = () => {
           </Popover>
         </div>
         <div className="flex items-center gap-6">
-          <ul className="flex gap-6 text-sm font-medium">
+          <ul className="flex gap-6 text-sm font-medium sm:hidden">
             {user && user.role === "admin" ? (
               <>
                 <li>
