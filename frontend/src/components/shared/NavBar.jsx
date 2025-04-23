@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
-import { Briefcase, LogOut, User2 } from "lucide-react";
+import { Briefcase, LogOut, User2, Menu } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
@@ -33,15 +33,23 @@ const NavBar = () => {
 
   return (
     <div className="bg-[#0a0a0a] text-white shadow-sm border-b border-gray-800">
-      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4">
+      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <Briefcase className="text-white" />
           <h1 className="text-2xl font-bold text-white">
             Job<span className="text-gray-400">Nest</span>
           </h1>
         </div>
-        <div className="flex items-center gap-6">
-          <ul className="flex gap-6 text-sm font-medium">
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button className="text-white">
+            <Menu />
+          </button>
+        </div>
+
+        <div className="hidden md:flex items-center gap-6">
+          <ul className="hidden md:flex gap-6 text-sm font-medium">
             {user && user.role === "admin" ? (
               <>
                 <li>
@@ -83,7 +91,7 @@ const NavBar = () => {
           </ul>
 
           {!user ? (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap justify-end">
               <Link to="/login">
                 <Button className="bg-zinc-800 text-white hover:bg-zinc-700 transition shadow-sm">
                   Log In
@@ -142,10 +150,7 @@ const NavBar = () => {
                   )}
                   <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
                     <LogOut size={18} />
-                    <Link
-                      onClick={logoutHandler} 
-                      className="hover:underline"
-                    >
+                    <Link onClick={logoutHandler} className="hover:underline">
                       Logout
                     </Link>
                   </div>
