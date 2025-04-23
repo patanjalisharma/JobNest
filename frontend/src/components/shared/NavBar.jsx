@@ -42,78 +42,77 @@ const NavBar = () => {
         </div>
 
         <div>
-        <Popover className="md:hidden">
-              <PopoverTrigger asChild>
-                <button className="text-white md:hidden">
-                <Menu/>
-                </button>
-                
-              </PopoverTrigger>
-              <PopoverContent className="w-64 mr-3 bg-[#111111] border border-gray-800 rounded-xl shadow-md p-4">
-                
-
-                <div className="flex flex-col gap-3 text-sm">
-                  {user && user.role !== "admin" ? (
-                    <>
-                    <ul className="hidden md:flex gap-6 text-sm font-medium">
-
+          <Popover className="md:hidden">
+            <PopoverTrigger asChild>
+              <button className="text-white md:hidden">
+                <Menu />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-64 mr-3 bg-[#111111] border border-gray-800 rounded-xl shadow-md p-4">
+              <div className="flex flex-col gap-3 text-sm">
+                {!user ? (
+                  <>
                     <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-                      
-                      <Link to="/" className="hover:underline">
-                      Home
+                      <Link to="/login" className="hover:underline">
+                        Login
                       </Link>
                     </div>
-                    
                     <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-                      
-                      <Link to="/jobs" className="hover:underline">
-                      Jobs
+                      <Link to="/signup" className="hover:underline">
+                        Sign Up
                       </Link>
                     </div>
-                    
+                  </>
+                ) : user.role === "admin" ? (
+                  <>
                     <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-                      
-                      <Link to="/browse" className="hover:underline">
-                      Browse
-                      </Link>
-                    </div>
-                    </ul>
-
-                    </>
-                    
-                  ): (
-                    <>
-                    <ul className="hidden md:flex gap-6 text-sm font-medium">
-
-                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-                      
                       <Link to="/admin/company" className="hover:underline">
-                      Companies
+                        Companies
                       </Link>
                     </div>
-                    
                     <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-                      
                       <Link to="/admin/jobs" className="hover:underline">
-                      Jobs
+                        Jobs
                       </Link>
                     </div>
-                    </ul>
-                    </>
-                  ) }
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      <Link to="/" className="hover:underline">
+                        Home
+                      </Link>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      <Link to="/jobs" className="hover:underline">
+                        Jobs
+                      </Link>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      <Link to="/browse" className="hover:underline">
+                        Browse
+                      </Link>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      <User2 size={18} />
+                      <Link to="/profile" className="hover:underline">
+                        View Profile
+                      </Link>
+                    </div>
+                  </>
+                )}
 
+                {user && (
                   <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
                     <LogOut size={18} />
-                    <Link
-                      onClick={logoutHandler} 
-                      className="hover:underline"
-                    >
+                    <button onClick={logoutHandler} className="hover:underline">
                       Logout
-                    </Link>
+                    </button>
                   </div>
-                </div>
-              </PopoverContent>
-            </Popover>
+                )}
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
         <div className="flex items-center gap-6">
           <ul className="flex gap-6 text-sm font-medium">
@@ -217,10 +216,7 @@ const NavBar = () => {
                   )}
                   <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
                     <LogOut size={18} />
-                    <Link
-                      onClick={logoutHandler} 
-                      className="hover:underline"
-                    >
+                    <Link onClick={logoutHandler} className="hover:underline">
                       Logout
                     </Link>
                   </div>
