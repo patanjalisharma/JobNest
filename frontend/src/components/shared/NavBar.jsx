@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
-import { Briefcase, LogOut, User2 } from "lucide-react";
+import { Briefcase, LogOut, Menu, User2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
@@ -39,6 +39,81 @@ const NavBar = () => {
           <h1 className="text-2xl font-bold text-white">
             Job<span className="text-gray-400">Nest</span>
           </h1>
+        </div>
+
+        <div>
+        <Popover className="md:hidden">
+              <PopoverTrigger asChild>
+                <button className="text-white">
+                <Menu/>
+                </button>
+                
+              </PopoverTrigger>
+              <PopoverContent className="w-64 mr-3 bg-[#111111] border border-gray-800 rounded-xl shadow-md p-4">
+                
+
+                <div className="flex flex-col gap-3 text-sm">
+                  {user && user.role !== "admin" ? (
+                    <>
+                    <ul className="hidden md:flex gap-6 text-sm font-medium">
+
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      
+                      <Link to="/" className="hover:underline">
+                      Home
+                      </Link>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      
+                      <Link to="/jobs" className="hover:underline">
+                      Jobs
+                      </Link>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      
+                      <Link to="/browse" className="hover:underline">
+                      Browse
+                      </Link>
+                    </div>
+                    </ul>
+
+                    </>
+                    
+                  ): (
+                    <>
+                    <ul className="hidden md:flex gap-6 text-sm font-medium">
+
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      
+                      <Link to="/admin/company" className="hover:underline">
+                      Companies
+                      </Link>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                      
+                      <Link to="/admin/jobs" className="hover:underline">
+                      Jobs
+                      </Link>
+                    </div>
+                    </ul>
+                    </>
+                  ) }
+
+                  <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
+                    <LogOut size={18} />
+                    <Link
+                      onClick={logoutHandler} 
+                      className="hover:underline"
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
         </div>
         <div className="flex items-center gap-6">
           <ul className="flex gap-6 text-sm font-medium">
