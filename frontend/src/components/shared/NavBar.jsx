@@ -34,6 +34,7 @@ const NavBar = () => {
   return (
     <div className="bg-[#0a0a0a] text-white shadow-sm border-b border-gray-800">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4 sm:px-6 lg:px-8">
+        {/* Logo */}
         <div className="flex items-center gap-3">
           <Briefcase className="text-white" />
           <h1 className="text-2xl font-bold text-white">
@@ -41,15 +42,9 @@ const NavBar = () => {
           </h1>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button className="text-white">
-            <Menu />
-          </button>
-        </div>
-
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
-          <ul className="hidden md:flex gap-6 text-sm font-medium">
+          <ul className="flex gap-6 text-sm font-medium">
             {user && user.role === "admin" ? (
               <>
                 <li>
@@ -91,7 +86,7 @@ const NavBar = () => {
           </ul>
 
           {!user ? (
-            <div className="flex items-center gap-3 flex-wrap justify-end">
+            <div className="flex items-center gap-3">
               <Link to="/login">
                 <Button className="bg-zinc-800 text-white hover:bg-zinc-700 transition shadow-sm">
                   Log In
@@ -158,6 +153,97 @@ const NavBar = () => {
               </PopoverContent>
             </Popover>
           )}
+        </div>
+
+        {/* Mobile Menu + Avatar (Small Screens Only) */}
+        <div className="flex items-center gap-3 md:hidden">
+          {user && (
+            <Avatar className="cursor-pointer ring-1 ring-gray-700">
+              <AvatarImage
+                src={
+                  user?.profile?.profilePhoto
+                    ? user?.profile?.profilePhoto
+                    : "https://github.com/shadcn.png"
+                }
+                alt="User"
+              />
+            </Avatar>
+          )}
+
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="text-white">
+                <Menu />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-64 bg-[#111111] border border-gray-800 rounded-xl shadow-md p-4">
+              <ul className="flex flex-col gap-4 text-sm font-medium">
+                {user && user.role === "admin" ? (
+                  <>
+                    <li>
+                      <Link to="/admin/company" className="hover:text-white">
+                        Companies
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/admin/jobs" className="hover:text-white">
+                        Jobs
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/" className="hover:text-white">
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/jobs" className="hover:text-white">
+                        Jobs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/browse" className="hover:text-white">
+                        Browse
+                      </Link>
+                    </li>
+                  </>
+                )}
+
+                {!user ? (
+                  <>
+                    <li>
+                      <Link to="/login" className="hover:text-white">
+                        Log In
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/signup" className="hover:text-white">
+                        Sign Up
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/profile" className="hover:text-white">
+                        View Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={logoutHandler}
+                        className="hover:text-white text-left"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </div>
