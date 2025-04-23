@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
-import { Briefcase, LogOut, User2, Menu } from "lucide-react";
+import { Briefcase, LogOut, User2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
@@ -33,17 +33,14 @@ const NavBar = () => {
 
   return (
     <div className="bg-[#0a0a0a] text-white shadow-sm border-b border-gray-800">
-      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
+      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4">
         <div className="flex items-center gap-3">
           <Briefcase className="text-white" />
           <h1 className="text-2xl font-bold text-white">
             Job<span className="text-gray-400">Nest</span>
           </h1>
         </div>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="flex items-center gap-6">
           <ul className="flex gap-6 text-sm font-medium">
             {user && user.role === "admin" ? (
               <>
@@ -145,7 +142,10 @@ const NavBar = () => {
                   )}
                   <div className="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
                     <LogOut size={18} />
-                    <Link onClick={logoutHandler} className="hover:underline">
+                    <Link
+                      onClick={logoutHandler} 
+                      className="hover:underline"
+                    >
                       Logout
                     </Link>
                   </div>
@@ -153,97 +153,6 @@ const NavBar = () => {
               </PopoverContent>
             </Popover>
           )}
-        </div>
-
-        {/* Mobile Menu + Avatar (Small Screens Only) */}
-        <div className="flex items-center gap-3 md:hidden">
-          {user && (
-            <Avatar className="cursor-pointer ring-1 ring-gray-700">
-              <AvatarImage
-                src={
-                  user?.profile?.profilePhoto
-                    ? user?.profile?.profilePhoto
-                    : "https://github.com/shadcn.png"
-                }
-                alt="User"
-              />
-            </Avatar>
-          )}
-
-          <Popover>
-            <PopoverTrigger asChild>
-              <button className="text-white">
-                <Menu />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-64 bg-[#111111] border border-gray-800 rounded-xl shadow-md p-4">
-              <ul className="flex flex-col gap-4 text-sm font-medium">
-                {user && user.role === "admin" ? (
-                  <>
-                    <li>
-                      <Link to="/admin/company" className="hover:text-white">
-                        Companies
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/admin/jobs" className="hover:text-white">
-                        Jobs
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <Link to="/" className="hover:text-white">
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/jobs" className="hover:text-white">
-                        Jobs
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/browse" className="hover:text-white">
-                        Browse
-                      </Link>
-                    </li>
-                  </>
-                )}
-
-                {!user ? (
-                  <>
-                    <li>
-                      <Link to="/login" className="hover:text-white">
-                        Log In
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/signup" className="hover:text-white">
-                        Sign Up
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <Link to="/profile" className="hover:text-white">
-                        View Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <button
-                        onClick={logoutHandler}
-                        className="hover:text-white text-left"
-                      >
-                        Logout
-                      </button>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </PopoverContent>
-          </Popover>
         </div>
       </div>
     </div>
