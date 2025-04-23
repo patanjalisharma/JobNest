@@ -17,7 +17,6 @@ const Profile = () => {
 
   const handleResumeView = () => {
     if (user?.profile?.resume) {
-      // Use the direct URL without any transformation
       window.open(user.profile.resume, '_blank', 'noopener,noreferrer');
     }
   };

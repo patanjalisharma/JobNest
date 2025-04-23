@@ -21,9 +21,7 @@ const JobCard = ({job}) => {
       {/* Top Section */}
       <div className="flex justify-between items-center">
         <p className="text-gray-400 text-sm">{daysAgo(job?.createdAt) === 0 ?  "Today" : `${daysAgo(job?.createdAt)} days ago`}</p>
-        <Button variant="outline" className="rounded-full cursor-pointer border-gray-600" size="icon">
-          <Bookmark className="text-black" />
-        </Button>
+        
       </div>
 
       {/* Company Info */}
@@ -63,9 +61,7 @@ const JobCard = ({job}) => {
         <Button onClick={() => navigate(`/description/${job?._id}`)} className="cursor-pointer bg-gray-700 hover:bg-gray-600 text-white border border-gray-600">
           Details
         </Button>
-        <Button className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white">
-          Save for later
-        </Button>
+        
       </div>
     </div>
   );

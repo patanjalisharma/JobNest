@@ -11,7 +11,6 @@ const useGetAllJobs = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        
         dispatch(setSearchQuery(""));
     }, [dispatch]);
 
