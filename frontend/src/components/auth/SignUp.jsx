@@ -124,7 +124,7 @@ const SignUp = () => {
 
           {/* Profile Upload */}
           <div className="mb-4">
-            <Label className="text-gray-600">Profile Picture</Label>
+            <Label className="text-gray-600">Profile Picture (required)</Label>
             <div className="relative flex items-center justify-center  rounded-md p-2">
               <Input accept="image/*" type="file" className="cursor-pointer w-full" onChange={changeFileHandler}/>
             </div>
